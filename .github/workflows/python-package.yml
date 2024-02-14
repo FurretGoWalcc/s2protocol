@@ -27,10 +27,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install setuptools
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: tests
       run: |
-        python setup.py
         python tests/suite.py
-        python s2protocol/s2_cli.py --all --ndjson --profile tests/s2replaystatsdata/2018_05_17_Z_Raphtor_VS_T_Tocon.SC2Replay
+        PYTHONPATH=$(pwd):$PYTHONPATH python s2protocol/s2_cli.py --all --ndjson --profile tests/s2replaystatsdata/2018_05_17_Z_Raphtor_VS_T_Tocon.SC2Replay
