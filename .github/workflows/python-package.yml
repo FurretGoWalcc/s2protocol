@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.6", "3.7", "3.12"]
+        python-version: ["3.7", "3.12"]
 
     steps:
     - uses: actions/checkout@v3
@@ -30,5 +30,6 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: tests
       run: |
+        python setup.py
         python tests/suite.py
         python s2protocol/s2_cli.py --all --ndjson --profile tests/s2replaystatsdata/2018_05_17_Z_Raphtor_VS_T_Tocon.SC2Replay
